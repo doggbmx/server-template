@@ -10,6 +10,10 @@ VALUES ($1, $2, $3)
 RETURNING *;
 `;
 
+export const DELETE_USER_QUERY = `
+DELETE from public.user
+WHERE id=$1 RETURNING *;
+`;
 export const UPDATE_USER_QUERY = `
 UPDATE public.user
 SET name=$2, email=$3, password=$4, recovery_token=$5

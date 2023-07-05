@@ -4,6 +4,7 @@ import { DataBaseError } from "../../../error/database_error";
 import { CreateUser, User } from "../../../user/domain/models/user_model";
 import { UserDataSource } from "../interfaces/user_data_source";
 import {
+  DELETE_USER_QUERY,
   INSERT_USER_QUERY,
   SELECT_USERS_QUERY,
   SELECT_USER_BY_EMAIL,
@@ -37,9 +38,17 @@ export class PGUsersDataSource implements UserDataSource {
   async getUser(id: string): Promise<User> {
     return await this.callDataBase(SELECT_USER_QUERY, [id], (result) => {
       if (result.rowCount === 0) {
-        throw new Error("user not found");
+        throw new Error("User not found");
       }
       return userFromPG(result.rows[0]);
+    });
+  }
+
+  async deleteUser(userId: string): Promise<void> {
+    await this.callDataBase(DELETE_USER_QUERY, [userId], (result) => {
+      if (result.rowCount === 0) {
+        throw new Error("User not found");
+      }
     });
   }
 
