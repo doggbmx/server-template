@@ -45,6 +45,12 @@ export class UserRepositoriesImplementation implements UserRepositories {
     );
   }
 
+  async deleteUser(userId: string): Promise<void> {
+    return await this.callDataSource(async () => {
+      await this.usersDataSource.deleteUser(userId);
+    });
+  }
+
   async updateUser(userId: string, data: UpdateUser): Promise<User> {
     return await this.callDataSource(async () => {
       const selectedUser = await this.usersDataSource.getUser(userId);
