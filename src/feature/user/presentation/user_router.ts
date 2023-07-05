@@ -7,15 +7,12 @@ import {
 } from "./users_middleware";
 import { validatorHandler } from "../../../core/middlewares/validation_handler";
 
-type UserRequestQuery = { userName?: string };
-
 export default function usersRouter(usersRepository: UserRepositories) {
   const router = express.Router();
 
   router.get("/", async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { userName } = req.query as UserRequestQuery;
-      const users = await usersRepository.getUser(userName);
+      const users = await usersRepository.getAllUsers();
       console.log(users);
       res.send(users);
     } catch (error) {
@@ -46,6 +43,21 @@ export default function usersRouter(usersRepository: UserRepositories) {
       try {
         const newUser = await usersRepository.createUser(req.body);
         res.status(201).send(newUser);
+      } catch (err) {
+        next(err);
+      }
+    }
+  );
+
+  router.delete(
+    "/:id",
+    ...getUserValidator,
+    validatorHandler,
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const { id } = req.params;
+        await usersRepository.deleteUser(id);
+        res.sendStatus(204);
       } catch (err) {
         next(err);
       }
