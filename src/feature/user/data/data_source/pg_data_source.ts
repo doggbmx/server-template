@@ -5,11 +5,9 @@ import { CreateUser, User } from "../../../user/domain/models/user_model";
 import { UserDataSource } from "../interfaces/user_data_source";
 import {
   INSERT_USER_QUERY,
-  INSERT_USER_TECH,
   SELECT_USERS_QUERY,
   SELECT_USER_BY_EMAIL,
   SELECT_USER_QUERY,
-  SELECT_USER_WITH_TECH,
   UPDATE_USER_QUERY,
 } from "../query_scripts/queries";
 import { userFromPG } from "../utils/user_serializer";
