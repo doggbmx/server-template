@@ -1,6 +1,6 @@
-import { AuthPayload } from "../models/auth_payload";
+import { AuthPayload } from "../../domain/models/auth_payload";
 
-export interface AuthRepository {
+export interface AuthDataSource {
   singInWithEmailAndPassword(
     email: string,
     password: string
