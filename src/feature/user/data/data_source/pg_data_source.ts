@@ -1,6 +1,6 @@
 import { Pool, PoolClient, QueryResult } from "pg";
-import { CustomError } from "../../../error/custom_error";
-import { DataBaseError } from "../../../error/database_error";
+import { CustomError } from "../../../../core/error/custom_error";
+import { DataBaseError } from "../../../../core/error/database_error";
 import { CreateUser, User } from "../../../user/domain/models/user_model";
 import { UserDataSource } from "../interfaces/user_data_source";
 import {
