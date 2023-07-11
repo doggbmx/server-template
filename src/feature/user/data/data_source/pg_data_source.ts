@@ -62,11 +62,9 @@ export class PGUsersDataSource implements UserDataSource {
   }
 
   async createUser(data: CreateUser): Promise<User> {
-    const hash = await bcrypt.hash(data.password!, 10);
-    console.log(hash);
     return await this.callDataBase(
       INSERT_USER_QUERY,
-      [data.name, data.email, hash],
+      [data.name, data.email, data.firebaseId],
       (result) => userFromPG(result.rows[0])
     );
   }
