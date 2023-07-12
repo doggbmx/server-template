@@ -10,6 +10,7 @@ import {
   SELECT_USER_BY_EMAIL,
   SELECT_USER_QUERY,
   UPDATE_USER_QUERY,
+  SELECT_USER_BY_FIREBASEID,
 } from "../query_scripts/queries";
 import { userFromPG } from "../utils/user_serializer";
 import bcrypt from "bcrypt";
@@ -42,6 +43,19 @@ export class PGUsersDataSource implements UserDataSource {
       }
       return userFromPG(result.rows[0]);
     });
+  }
+
+  async getUserByFirebaseId(firebaseId: string): Promise<User> {
+    return await this.callDataBase(
+      SELECT_USER_BY_FIREBASEID,
+      [firebaseId],
+      (result) => {
+        if (result.rowCount === 0) {
+          throw new Error("User not found");
+        }
+        return userFromPG(result.rows[0]);
+      }
+    );
   }
 
   async deleteUser(userId: string): Promise<void> {
