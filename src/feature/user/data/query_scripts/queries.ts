@@ -4,6 +4,8 @@ export const SELECT_USER_QUERY = `SELECT * FROM public.user WHERE id = $1;`;
 
 export const SELECT_USER_BY_EMAIL = `SELECT * FROM public.user WHERE email = $1 LIMIT 1;`;
 
+export const SELECT_USER_BY_FIREBASEID = `SELECT * FROM public.user WHERE firebase_id = $1 LIMIT 1;`;
+
 export const INSERT_USER_QUERY = `
 INSERT INTO public.user (name, email, firebase_id)
 VALUES ($1, $2, $3)
