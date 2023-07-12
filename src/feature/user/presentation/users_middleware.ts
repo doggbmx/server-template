@@ -38,9 +38,9 @@ export const createUserValidator = [
     .isEmail()
     .isLength({ min: 3 })
     .withMessage("Invalid Email"),
-  validateBodyParam("password")
-    .isLength({ min: 8 })
-    .withMessage("Password too short!"),
+  validateBodyParam("firebaseId")
+    .isLength({ min: 3 })
+    .withMessage("Invalid firebaseId"),
 ];
 
 export const updateUserValidator = [
