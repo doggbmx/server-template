@@ -35,6 +35,19 @@ export default function usersRouter(usersRepository: UserRepositories) {
     }
   );
 
+  router.get(
+    "/:firebaseId",
+    ...getUserValidator,
+    validatorHandler,
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const { firebaseId } = req.params;
+        const user = await usersRepository.getUserByFirebaseId(firebaseId);
+        res.send(user);
+      } catch (error) {}
+    }
+  );
+
   router.post(
     "/",
     ...createUserValidator,
