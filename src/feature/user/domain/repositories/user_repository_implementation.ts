@@ -27,6 +27,12 @@ export class UserRepositoriesImplementation implements UserRepositories {
     });
   }
 
+  async getUserByFirebaseId(firebaseId: string): Promise<User> {
+    return await this.callDataSource(async () => {
+      return await this.usersDataSource.getUserByFirebaseId(firebaseId);
+    });
+  }
+
   async getAllUsers(): Promise<User[]> {
     return await this.callDataSource(async () => {
       return await this.usersDataSource.getAllUsers();
