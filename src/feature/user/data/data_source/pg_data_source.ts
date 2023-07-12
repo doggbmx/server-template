@@ -37,18 +37,9 @@ export class PGUsersDataSource implements UserDataSource {
   }
 
   async getUser(id: string): Promise<User> {
-    return await this.callDataBase(SELECT_USER_QUERY, [id], (result) => {
-      if (result.rowCount === 0) {
-        throw new Error("User not found");
-      }
-      return userFromPG(result.rows[0]);
-    });
-  }
-
-  async getUserByFirebaseId(firebaseId: string): Promise<User> {
     return await this.callDataBase(
       SELECT_USER_BY_FIREBASEID,
-      [firebaseId],
+      [id],
       (result) => {
         if (result.rowCount === 0) {
           throw new Error("User not found");
