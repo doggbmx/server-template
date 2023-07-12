@@ -1,7 +1,7 @@
 import { body, param, query } from "express-validator";
 
 const validateId = () =>
-  param("firebaseId").isString().bail().withMessage("Invalid Firebase Id");
+  param("id").isString().bail().withMessage("Invalid Firebase Id");
 
 const validateQueryParam = (value: string, optional = false) => {
   let validation = query(value);
