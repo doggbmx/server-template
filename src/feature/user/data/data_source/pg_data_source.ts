@@ -42,7 +42,14 @@ export class PGUsersDataSource implements UserDataSource {
       [id],
       (result) => {
         if (result.rowCount === 0) {
-          throw new Error("User not found");
+          return userFromPG({
+            id: 0,
+            name: "",
+            email: "",
+            firebase_id: "",
+            recovery_token: "",
+          });
+          // throw new Error("User not found");
         }
         return userFromPG(result.rows[0]);
       }
@@ -77,7 +84,7 @@ export class PGUsersDataSource implements UserDataSource {
   async updateUser(data: User): Promise<User> {
     return await this.callDataBase(
       UPDATE_USER_QUERY,
-      [data.userId, data.name, data.email, data.password, data.recoveryToken],
+      [data.userId, data.name, data.email, data.recoveryToken],
       (result) => userFromPG(result.rows[0])
     );
   }
