@@ -2,7 +2,6 @@ export interface User {
   userId: string;
   name: string;
   email: string;
-  password?: string;
   firebaseId?: string;
   recoveryToken?: string | null;
 }

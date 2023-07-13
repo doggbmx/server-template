@@ -5,7 +5,7 @@ export const userFromPG = (item: any): User => {
     userId: item.id,
     name: item.name,
     email: item.email,
-    password: item.password,
+    firebaseId: item.firebase_id,
     recoveryToken: item.recovery_token,
   };
 };
