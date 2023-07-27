@@ -36,12 +36,14 @@ export class PGUsersDataSource implements UserDataSource {
     );
   }
 
-  async getUser(id: string): Promise<User> {
+  async getUser(id: string): Promise<User | null> {
     return await this.callDataBase(
       SELECT_USER_BY_FIREBASEID,
       [id],
       (result) => {
         if (result.rowCount === 0) {
+          return null;
+          // TODO: THIS MIGHT BE CRIMINAL
           return userFromPG({
             id: 0,
             name: "",
