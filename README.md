@@ -31,4 +31,8 @@ admin.initializeApp({
 export const authService = admin.auth();
 ```
 
-Fill the variables in the `.env` file, aaand you're ready to go! This should make all fine! Happy coding!
+Fill the variables in the `.env` file, aaand you're ready to go! Firebase `projectId`, `privateKey` and `clientEmail` you should find it on the [Firebase Console](https://console.firebase.google.com/u/0/).
+
+#### **NOTE:** You should already have PostgreSQL installed and running as a service. Fill the `.env` variables with the correct data.
+
+# Happy coding!
