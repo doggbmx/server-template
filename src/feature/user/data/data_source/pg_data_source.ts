@@ -43,15 +43,6 @@ export class PGUsersDataSource implements UserDataSource {
       (result) => {
         if (result.rowCount === 0) {
           return null;
-          // TODO: THIS MIGHT BE CRIMINAL
-          return userFromPG({
-            id: 0,
-            name: "",
-            email: "",
-            firebase_id: "",
-            recovery_token: "",
-          });
-          // throw new Error("User not found");
         }
         return userFromPG(result.rows[0]);
       }
